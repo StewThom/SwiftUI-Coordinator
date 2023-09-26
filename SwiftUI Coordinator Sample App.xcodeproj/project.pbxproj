@@ -8,17 +8,33 @@
 
 /* Begin PBXBuildFile section */
 		B7A30AB62AC296EA00236D87 /* SwiftUI_Coordinator_Sample_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A30AB52AC296EA00236D87 /* SwiftUI_Coordinator_Sample_AppApp.swift */; };
-		B7A30AB82AC296EA00236D87 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A30AB72AC296EA00236D87 /* ContentView.swift */; };
+		B7A30AB82AC296EA00236D87 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A30AB72AC296EA00236D87 /* HomeScreen.swift */; };
 		B7A30ABA2AC296EB00236D87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7A30AB92AC296EB00236D87 /* Assets.xcassets */; };
 		B7A30ABD2AC296EB00236D87 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7A30ABC2AC296EB00236D87 /* Preview Assets.xcassets */; };
+		B7A30AC42AC296FD00236D87 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A30AC32AC296FD00236D87 /* Coordinator.swift */; };
+		B7A30AC62AC298FC00236D87 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A30AC52AC298FC00236D87 /* MainCoordinator.swift */; };
+		B7A30AC92AC2BE6400236D87 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A30AC82AC2BE6400236D87 /* SettingsScreen.swift */; };
+		B7A30ACB2AC2BE7300236D87 /* DetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A30ACA2AC2BE7300236D87 /* DetailScreen.swift */; };
+		B7A30ACE2AC2C13F00236D87 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A30ACD2AC2C13F00236D87 /* SettingsCoordinator.swift */; };
+		B7A30AD22AC2C1AE00236D87 /* NotificationsSettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A30AD12AC2C1AE00236D87 /* NotificationsSettingsScreen.swift */; };
+		B7A30AD42AC2C1C200236D87 /* SecuritySettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A30AD32AC2C1C200236D87 /* SecuritySettingsScreen.swift */; };
+		B7A30AD62AC2C1D400236D87 /* AccountSettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A30AD52AC2C1D400236D87 /* AccountSettingsScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B7A30AB22AC296EA00236D87 /* SwiftUI Coordinator Sample App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI Coordinator Sample App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7A30AB52AC296EA00236D87 /* SwiftUI_Coordinator_Sample_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_Coordinator_Sample_AppApp.swift; sourceTree = "<group>"; };
-		B7A30AB72AC296EA00236D87 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B7A30AB72AC296EA00236D87 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		B7A30AB92AC296EB00236D87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B7A30ABC2AC296EB00236D87 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B7A30AC32AC296FD00236D87 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		B7A30AC52AC298FC00236D87 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		B7A30AC82AC2BE6400236D87 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
+		B7A30ACA2AC2BE7300236D87 /* DetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScreen.swift; sourceTree = "<group>"; };
+		B7A30ACD2AC2C13F00236D87 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
+		B7A30AD12AC2C1AE00236D87 /* NotificationsSettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSettingsScreen.swift; sourceTree = "<group>"; };
+		B7A30AD32AC2C1C200236D87 /* SecuritySettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecuritySettingsScreen.swift; sourceTree = "<group>"; };
+		B7A30AD52AC2C1D400236D87 /* AccountSettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +68,8 @@
 			isa = PBXGroup;
 			children = (
 				B7A30AB52AC296EA00236D87 /* SwiftUI_Coordinator_Sample_AppApp.swift */,
-				B7A30AB72AC296EA00236D87 /* ContentView.swift */,
+				B7A30AC72AC2ADA700236D87 /* Screens */,
+				B7A30ACC2AC2C12800236D87 /* Coordinators */,
 				B7A30AB92AC296EB00236D87 /* Assets.xcassets */,
 				B7A30ABB2AC296EB00236D87 /* Preview Content */,
 			);
@@ -65,6 +82,45 @@
 				B7A30ABC2AC296EB00236D87 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B7A30AC72AC2ADA700236D87 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				B7A30AB72AC296EA00236D87 /* HomeScreen.swift */,
+				B7A30ACF2AC2C18A00236D87 /* Settings */,
+				B7A30ACA2AC2BE7300236D87 /* DetailScreen.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		B7A30ACC2AC2C12800236D87 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				B7A30AC32AC296FD00236D87 /* Coordinator.swift */,
+				B7A30AC52AC298FC00236D87 /* MainCoordinator.swift */,
+				B7A30ACD2AC2C13F00236D87 /* SettingsCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		B7A30ACF2AC2C18A00236D87 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B7A30AC82AC2BE6400236D87 /* SettingsScreen.swift */,
+				B7A30AD02AC2C19000236D87 /* SubScreens */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		B7A30AD02AC2C19000236D87 /* SubScreens */ = {
+			isa = PBXGroup;
+			children = (
+				B7A30AD12AC2C1AE00236D87 /* NotificationsSettingsScreen.swift */,
+				B7A30AD32AC2C1C200236D87 /* SecuritySettingsScreen.swift */,
+				B7A30AD52AC2C1D400236D87 /* AccountSettingsScreen.swift */,
+			);
+			path = SubScreens;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +193,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7A30AB82AC296EA00236D87 /* ContentView.swift in Sources */,
+				B7A30AC62AC298FC00236D87 /* MainCoordinator.swift in Sources */,
+				B7A30AB82AC296EA00236D87 /* HomeScreen.swift in Sources */,
+				B7A30AD42AC2C1C200236D87 /* SecuritySettingsScreen.swift in Sources */,
+				B7A30ACB2AC2BE7300236D87 /* DetailScreen.swift in Sources */,
+				B7A30AD62AC2C1D400236D87 /* AccountSettingsScreen.swift in Sources */,
 				B7A30AB62AC296EA00236D87 /* SwiftUI_Coordinator_Sample_AppApp.swift in Sources */,
+				B7A30ACE2AC2C13F00236D87 /* SettingsCoordinator.swift in Sources */,
+				B7A30AD22AC2C1AE00236D87 /* NotificationsSettingsScreen.swift in Sources */,
+				B7A30AC92AC2BE6400236D87 /* SettingsScreen.swift in Sources */,
+				B7A30AC42AC296FD00236D87 /* Coordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
