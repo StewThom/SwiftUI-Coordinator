@@ -37,7 +37,6 @@ class SettingsCoordinator: Coordinator {
 				SecuritySettingsScreen()
 			case .account:
 				AccountSettingsScreen()
-
 		}
 	}
 

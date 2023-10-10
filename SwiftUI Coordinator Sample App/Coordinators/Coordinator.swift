@@ -62,10 +62,8 @@ struct WrapperView<Content: View, SomeCoordinator: Coordinator>: View {
 	var content: () -> Content
 
 	var body: some View {
-		NavigationView {
-			SheetPresenter(coordinator: coordinator) {
-				content()
-			}
+		SheetPresenter(coordinator: coordinator, navigationPath: coordinator.navigationPathBinding) {
+			content()
 		}
 		.environmentObject(coordinator)
 	}
@@ -73,18 +71,21 @@ struct WrapperView<Content: View, SomeCoordinator: Coordinator>: View {
 	struct SheetPresenter: View {
 
 		@ObservedObject var coordinator: SomeCoordinator
+		@Binding var navigationPath: [SomeCoordinator.Route]
 		var content: () -> Content
 
 		var body: some View {
-			content()
-				.navigationDestination(for: SomeCoordinator.Route.self, destination: { route in
-					coordinator.destination(for: route)
-				})
-				.sheet(isPresented: coordinator.showChild, content: {
-					if let childCoordinator = coordinator.childCoordinator {
-						AnyView(childCoordinator.rootView)
-					}
-				})
+			NavigationStack(path: $navigationPath) {
+				content()
+					.navigationDestination(for: SomeCoordinator.Route.self, destination: { route in
+						coordinator.destination(for: route)
+					})
+			}
+			.sheet(isPresented: coordinator.showChild, content: {
+				if let childCoordinator = coordinator.childCoordinator {
+					AnyView(childCoordinator.rootView)
+				}
+			})
 		}
 	}
 }
