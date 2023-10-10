@@ -8,15 +8,10 @@
 import Foundation
 import SwiftUI
 
-struct AnyCoordinator: Identifiable {
-	let id = UUID()
-	let coordinator: any Coordinator
-}
-
 protocol Coordinator: ObservableObject {
 
 	var parentCoordinator: (any Coordinator)? { get set }
-	var childCoordinator: AnyCoordinator? { get set }
+	var childCoordinator: (any Coordinator)? { get set }
 
 	func present(child: any Coordinator)
 
@@ -33,7 +28,7 @@ protocol Coordinator: ObservableObject {
 
 extension Coordinator {
 	func present(child: any Coordinator) {
-		self.childCoordinator = AnyCoordinator(coordinator: child)
+		self.childCoordinator = child
 		child.parentCoordinator = self
 	}
 
@@ -48,31 +43,48 @@ extension Coordinator {
 			self.navigationPath = newPath
 		}
 	}
+
+	var showChild: Binding<Bool> {
+		Binding<Bool> { [weak self] in
+			self?.childCoordinator != nil
+		} set: { [weak self] newValue in
+			if newValue == false {
+				self?.childCoordinator = nil
+			}
+		}
+	}
+
 }
 
 struct WrapperView<Content: View, SomeCoordinator: Coordinator>: View {
 
-	@ObservedObject var coordinator: SomeCoordinator
-	@Binding var navigationPath: [SomeCoordinator.Route]
-	let content: () -> Content
-
-	init(coordinator: SomeCoordinator, navigationPath: Binding<[SomeCoordinator.Route]>, content: @escaping () -> Content) {
-		self.coordinator = coordinator
-		self._navigationPath = navigationPath
-		self.content = content
-	}
+	unowned var coordinator: SomeCoordinator
+	var content: () -> Content
 
 	var body: some View {
-		NavigationStack(path: $navigationPath) {
-			content()
-				.navigationDestination(for: SomeCoordinator.Route.self) { route in
-					coordinator
-						.destination(for: route)
-				}
+		NavigationView {
+			SheetPresenter(coordinator: coordinator) {
+				content()
+			}
 		}
-		.sheet(item: $coordinator.childCoordinator, content: { child in
-			AnyView(child.coordinator.rootView)
-		})
 		.environmentObject(coordinator)
+	}
+
+	struct SheetPresenter: View {
+
+		@ObservedObject var coordinator: SomeCoordinator
+		var content: () -> Content
+
+		var body: some View {
+			content()
+				.navigationDestination(for: SomeCoordinator.Route.self, destination: { route in
+					coordinator.destination(for: route)
+				})
+				.sheet(isPresented: coordinator.showChild, content: {
+					if let childCoordinator = coordinator.childCoordinator {
+						AnyView(childCoordinator.rootView)
+					}
+				})
+		}
 	}
 }

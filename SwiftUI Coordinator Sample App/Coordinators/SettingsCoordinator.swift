@@ -8,7 +8,7 @@
 import SwiftUI
 
 class SettingsCoordinator: Coordinator {
-	
+
 	enum NavigationRoute: String, CaseIterable {
 		case notifications
 		case account
@@ -16,11 +16,11 @@ class SettingsCoordinator: Coordinator {
 	}
 
 	weak var parentCoordinator: (any Coordinator)?
-	@Published var childCoordinator: AnyCoordinator?
+	@Published var childCoordinator: (any Coordinator)?
 	@Published var navigationPath: [NavigationRoute] = []
 
 	var rootView: some View {
-		WrapperView(coordinator: self, navigationPath: navigationPathBinding) {
+		WrapperView(coordinator: self) {
 			SettingsScreen()
 		}
 	}
@@ -41,4 +41,7 @@ class SettingsCoordinator: Coordinator {
 		}
 	}
 
+	deinit {
+		print("Deinit")
+	}
 }

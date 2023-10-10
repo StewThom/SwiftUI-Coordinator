@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsScreen: View {
 	
+	@Environment(\.dismiss) var dismiss
 	@EnvironmentObject var coordinator: SettingsCoordinator
 
     var body: some View {
@@ -31,7 +32,7 @@ struct SettingsScreen: View {
 		}
 		.toolbar {
 			ToolbarItem(placement: .cancellationAction) {
-				Button("Close", systemImage: "xmark.circle.fill", action: coordinator.dismiss)
+				Button("Close", systemImage: "xmark.circle.fill", action: dismiss.callAsFunction)
 			}
 		}
 		.navigationTitle("Settings")
