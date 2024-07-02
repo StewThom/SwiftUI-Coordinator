@@ -20,21 +20,20 @@ struct HomeScreen: View {
 				Label {
 					Text("Push Detail")
 				} icon: {
-					Image(systemName: "rectangle.portrait.and.arrow.forward")
-						.environment(\.layoutDirection, .rightToLeft)
+					Image(systemName: "arrowshape.turn.up.backward.circle.fill")
 				}
 			}
 
 		}
 		.toolbar {
-			ToolbarItem(placement: .topBarTrailing) {
+			ToolbarItem(placement: .navigationBarTrailing) {
 				Button(action: presentSettings) {
 					Label("Show Settings", systemImage: "gear")
 				}
 			}
 		}
-		.navigationTitle("Test")
-    }
+		.navigationTitle("Coordinator Sample")
+	}
 
 	func presentModal() {
 		let child = MainCoordinator()

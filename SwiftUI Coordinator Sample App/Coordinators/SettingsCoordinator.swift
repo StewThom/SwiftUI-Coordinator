@@ -25,10 +25,6 @@ class SettingsCoordinator: Coordinator {
 		}
 	}
 
-	func dismiss() {
-		parentCoordinator?.childCoordinator = nil
-	}
-
 	func destination(for route: NavigationRoute) -> some View {
 		switch route {
 			case .notifications:

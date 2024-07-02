@@ -10,11 +10,11 @@ import SwiftUI
 @main
 struct SwiftUI_Coordinator_Sample_AppApp: App {
 
-	let coordinator = MainCoordinator()
+	let mainCoordinator = MainCoordinator()
 
-    var body: some Scene {
-        WindowGroup {
-			coordinator.rootView
-        }
-    }
+	var body: some Scene {
+		WindowGroup {
+			mainCoordinator.rootView
+		}
+	}
 }

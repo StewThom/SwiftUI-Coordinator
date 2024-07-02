@@ -15,7 +15,7 @@ struct DetailScreen: View {
         Text("Detail")
 			.navigationTitle("Detail")
 			.toolbar {
-				ToolbarItem(placement: .topBarTrailing) {
+				ToolbarItem(placement: .navigationBarTrailing) {
 					Button(action: presentSettings) {
 						Label("Show Settings", systemImage: "gear")
 					}

@@ -14,6 +14,8 @@ protocol Coordinator: ObservableObject {
 	var childCoordinator: (any Coordinator)? { get set }
 
 	func present(child: any Coordinator)
+	func dismiss()
+	func push(route: Route)
 
 	associatedtype Content : View
 	@ViewBuilder @MainActor var rootView: Content { get }
@@ -36,6 +38,12 @@ extension Coordinator {
 		self.navigationPath.append(route)
 	}
 
+	func dismiss() {
+		DispatchQueue.main.async {
+			self.parentCoordinator?.childCoordinator = nil
+		}
+	}
+
 	var navigationPathBinding: Binding<[Route]> {
 		Binding<[Route]> {
 			return self.navigationPath
@@ -49,7 +57,9 @@ extension Coordinator {
 			self?.childCoordinator != nil
 		} set: { [weak self] newValue in
 			if newValue == false {
-				self?.childCoordinator = nil
+				DispatchQueue.main.async {
+					self?.childCoordinator = nil
+				}
 			}
 		}
 	}
@@ -62,15 +72,17 @@ struct WrapperView<Content: View, SomeCoordinator: Coordinator>: View {
 	var content: () -> Content
 
 	var body: some View {
-		SheetPresenter(coordinator: coordinator, navigationPath: coordinator.navigationPathBinding) {
+		NavigationHandlingView(navigationPath: coordinator.navigationPathBinding) {
 			content()
 		}
 		.environmentObject(coordinator)
 	}
+}
 
-	struct SheetPresenter: View {
+extension WrapperView {
+	struct NavigationHandlingView: View {
 
-		@ObservedObject var coordinator: SomeCoordinator
+		@EnvironmentObject var coordinator: SomeCoordinator
 		@Binding var navigationPath: [SomeCoordinator.Route]
 		var content: () -> Content
 
@@ -81,11 +93,11 @@ struct WrapperView<Content: View, SomeCoordinator: Coordinator>: View {
 						coordinator.destination(for: route)
 					})
 			}
-			.sheet(isPresented: coordinator.showChild, content: {
+			.sheet(isPresented: coordinator.showChild) {
 				if let childCoordinator = coordinator.childCoordinator {
 					AnyView(childCoordinator.rootView)
 				}
-			})
+			}
 		}
 	}
 }

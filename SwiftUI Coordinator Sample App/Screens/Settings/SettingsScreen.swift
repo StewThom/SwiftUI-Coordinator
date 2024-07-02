@@ -12,8 +12,11 @@ struct SettingsScreen: View {
 	@Environment(\.dismiss) var dismiss
 	@EnvironmentObject var coordinator: SettingsCoordinator
 
+	@State var text: String = ""
+
     var body: some View {
 		List {
+			TextField("Text", text: $text)
 			Section {
 				Button("Notifications") {
 					presentNavigationRoute(.notifications)
@@ -32,7 +35,9 @@ struct SettingsScreen: View {
 		}
 		.toolbar {
 			ToolbarItem(placement: .cancellationAction) {
-				Button("Close", systemImage: "xmark.circle.fill", action: dismiss.callAsFunction)
+				Button(action: coordinator.dismiss) {
+					Label("Close", systemImage: "xmark.circle.fill")
+				}
 			}
 		}
 		.navigationTitle("Settings")
