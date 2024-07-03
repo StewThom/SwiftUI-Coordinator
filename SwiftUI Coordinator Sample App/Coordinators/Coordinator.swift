@@ -22,7 +22,6 @@ protocol Coordinator: ObservableObject {
 
 	associatedtype Route : Hashable
 	var navigationPath: [Route] { get set }
-	var navigationPathBinding: Binding<[Route]> { get }
 
 	associatedtype Destination : View
 	@ViewBuilder @MainActor func destination(for route: Route) -> Destination
@@ -41,14 +40,6 @@ extension Coordinator {
 	func dismiss() {
 		DispatchQueue.main.async {
 			self.parentCoordinator?.childCoordinator = nil
-		}
-	}
-
-	var navigationPathBinding: Binding<[Route]> {
-		Binding<[Route]> {
-			return self.navigationPath
-		} set: { newPath in
-			self.navigationPath = newPath
 		}
 	}
 
@@ -72,7 +63,7 @@ struct WrapperView<Content: View, SomeCoordinator: Coordinator>: View {
 	var content: () -> Content
 
 	var body: some View {
-		NavigationHandlingView(navigationPath: coordinator.navigationPathBinding) {
+		NavigationHandlingView {
 			content()
 		}
 		.environmentObject(coordinator)
@@ -83,11 +74,10 @@ extension WrapperView {
 	struct NavigationHandlingView: View {
 
 		@EnvironmentObject var coordinator: SomeCoordinator
-		@Binding var navigationPath: [SomeCoordinator.Route]
 		var content: () -> Content
 
 		var body: some View {
-			NavigationStack(path: $navigationPath) {
+			NavigationStack(path: $coordinator.navigationPath) {
 				content()
 					.navigationDestination(for: SomeCoordinator.Route.self, destination: { route in
 						coordinator.destination(for: route)

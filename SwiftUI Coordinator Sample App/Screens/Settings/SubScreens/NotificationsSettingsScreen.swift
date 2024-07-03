@@ -8,10 +8,23 @@
 import SwiftUI
 
 struct NotificationsSettingsScreen: View {
+
+	@EnvironmentObject var coordinator: SettingsCoordinator
+
     var body: some View {
-        Text("Notifications")
-			.navigationTitle("Notifications")
+		VStack {
+			Text("Notifications")
+				.navigationTitle("Notifications")
+			Button(action: presentMain) {
+				Label("Open Modal", systemImage: "rectangle.stack")
+			}
+		}
     }
+
+	func presentMain() {
+		let mainCoordinator = MainCoordinator()
+		coordinator.present(child: mainCoordinator)
+	}
 }
 
 #Preview {

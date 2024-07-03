@@ -11,7 +11,6 @@ import SwiftUI
 class MainCoordinator: Coordinator {
 
 	enum NavigationRoute: String {
-		case settings
 		case detail
 	}
 
@@ -27,8 +26,6 @@ class MainCoordinator: Coordinator {
 
 	func destination(for route: NavigationRoute) -> some View {
 		switch route {
-			case .settings:
-				SettingsScreen()
 			case .detail:
 				DetailScreen()
 		}
